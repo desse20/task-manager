@@ -1,0 +1,40 @@
+<div class="space-y-14">
+
+  <!-- Hero Section -->
+  <div class="text-center space-y-4">
+    <h2 class="text-3xl font-bold text-gray-800">
+      Welcome to Task Manager
+    </h2>
+    <p class="text-gray-600 max-w-xl mx-auto">
+      Organize your tasks, boost your productivity, and stay focused on what truly matters.
+    </p>
+  </div>
+
+  <!-- Action Buttons -->
+    <a
+  routerLink="/tasks"
+  class="bg-gray-700 text-white px-6 py-2 rounded-lg shadow hover:bg-gray-600 transition cursor-pointer text-center"
+>
+  View Tasks
+</a>
+
+
+  <!-- Features Section -->
+  <div class="grid md:grid-cols-3 gap-6 mt-8">
+    @for(item of cardContent; track $index){
+      <div>
+        <div class="bg-gray-100 p-6 rounded-xl shadow hover:shadow-md transition">
+          <h3 class="text-lg font-semibold text-gray-800 mb-2">
+            <mat-icon>{{ item.icon }}</mat-icon>
+            {{ item.title }}
+          </h3>
+          <p class="text-gray-600 text-sm">
+            {{ item.description }}
+          </p>
+        </div>
+      </div>
+
+    }
+</div>
+
+</div>

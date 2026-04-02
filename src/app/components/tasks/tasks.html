@@ -1,0 +1,32 @@
+<div class="space-y-12">
+
+<h1 class="flex justify-start w-4/6">Tasks</h1>
+
+<input
+  class="p-2 m-2 border-gray-700 border rounded-lg"
+  type="text"
+  placeholder="Add task..."
+  [value]="newTask().title"
+  (input)="newTask.update(t => ({ ...t, title: $any($event.target).value }))"
+/>
+
+<button class="bg-gray-700 rounded-lg p-2 text-white cursor-pointer" (click)="addTask()">
+  Add Task
+</button>
+
+<h2 class="p-3 m-3">Task List</h2>
+
+@for (item of Tasks(); track item.id) {
+  <div class="flex items-center m-2">
+    <input
+      type="checkbox"
+      class="m-2"
+      [checked]="item.completed"
+      (change)="toggleTask($any($event.target).checked, item.id)"
+      placeholder="Add"
+    />
+    <span [class.line-through]="item.completed">{{ item.title }}</span>
+  </div>
+}
+</div>
+
