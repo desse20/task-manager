@@ -1,0 +1,79 @@
+
+  <form [formGroup]="taskForm" (ngSubmit)="createTask()" class="bg-white p-8 rounded-2xl w-full max-w-md space-y-5">
+
+    <h2 class="text-2xl font-bold text-center text-gray-700">Task</h2>
+
+
+    <div>
+      <label class="block text-sm font-medium text-gray-600">Task name</label>
+      <input type="text" formControlName="name"  placeholder="Enter your task"
+        class="w-full mt-1 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none">
+      @if(taskForm.controls['name'].touched || taskForm.controls['name'].dirty) {
+        <div class="text-red-500 text-sm mt-1">
+          @if(taskForm.controls['name'].errors?.['required']) { <span>This field is required</span> }
+        </div>
+      }
+
+    </div>
+
+
+    <div>
+      <label class="block text-sm font-medium text-gray-600">Priority</label>
+      <input type="text" formControlName="priority" placeholder="Enter priority"
+        class="w-full mt-1 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none">
+      @if(taskForm.controls['priority'].touched || taskForm.controls['priority'].dirty) {
+        <div class="text-red-500 text-sm mt-1">
+          @if(taskForm.controls['priority'].errors?.['required']) { <span>This field is required</span> }
+        </div>
+      }
+    </div>
+
+
+
+    <!-- Submit -->
+        <div class="grid grid-flow-col grid-rows-1">
+            <button type="submit"
+        [disabled]="taskForm.invalid"
+        class="bg-gray-800 p-2 text-white rounded-lg m-2 cursor-pointer disabled:bg-gray-300 disabled:cursor-not-allowed disabled:text-gray-400">
+  {{ isEditMode ? 'Update Task' : 'Create Task' }}
+</button>
+        </div>
+
+  </form>
+
+  <section>
+    <h1 class="text-2xl font-bold text-center text-gray-700">Task List</h1>
+    @if(tasks().length === 0){
+      <span>No tasks were created</span>
+    }@else {
+      <div>
+        <ul>
+  @for(item of tasks(); track $index){
+    <li class="flex justify-between p-2 border-b">
+      <span class="m-2">{{ item.name }}</span>
+      <span class="m-2">{{ item.priority }}</span>
+      <span class="font-bold m-2"
+            [class.text-green-600]="item.completed"
+            [class.text-gray-700]="!item.completed">
+        {{ item.completed ? 'Completed' : 'Pending' }}
+      </span>
+      <div class="flex gap-2">
+    <button (click)="toggleTask($index)" class="text-gray-800 cursor-pointer">
+
+      @if(item.completed){
+    <mat-icon>check_box</mat-icon>
+  } @else {
+    <mat-icon>check_box_outline_blank</mat-icon>
+  }
+    </button>
+    <button (click)="editTask(item, $index)" class="text-gray-800 cursor-pointer"><mat-icon>edit</mat-icon></button>
+    <button (click)="deleteTask($index)" class="text-red-600 cursor-pointer"><mat-icon>delete</mat-icon></button>
+  </div>
+    </li>
+  }
+</ul>
+      </div>
+    }
+  </section>
+
+
