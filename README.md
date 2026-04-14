@@ -22,6 +22,12 @@ Application Angular de gestion de tâches.
 - Page "À propos" (`/about`) avec une présentation du projet.
 - Page 404 personnalisée pour les routes inconnues.
 
+## Lien de démo
+
+Vous pouvez voir une démo de l'application ici : 
+🔗 [Task Manager Demo](https://task-manager-psi-rouge-65.vercel.app/)
+
+
 ## Structure principale
 
 - `src/app/app.ts` : composant racine.
@@ -50,6 +56,7 @@ npm start
 ```
 
 Puis ouvrir `http://localhost:4200/`.
+
 
 ## Licence
 
